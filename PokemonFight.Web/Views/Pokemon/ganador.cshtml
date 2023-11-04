@@ -1,10 +1,10 @@
 ﻿@using PokemonFight.Data.EF;
 @model Pokemon;
 
-    <p class="text-6xl text-center mb-6">El ganador es @Model.Nombre</p>
+    <p class="text-6xl text-center mb-6">¡El ganador es @Model.Nombre!</p>
     <img src="@Model.Imagen" class="mx-auto mb-10"/>
-    <a class="text-3xl" href="/Pokemon/elegirPokemon">
-    <div class="bg-[#f3be12] rounded-3xl w-[15%] mx-auto flex items-center justify-center p-4 pl-8 pr-8">
+    <a class="text-3xl " href="/Pokemon/elegirPokemon">
+    <div class="bg-[#f3be12] rounded-3xl w-[15%] mx-auto flex items-center justify-center p-4 pl-8 pr-8 mb-10 border-bottom border-2 border-black">
             Volver
         </div>
     </a>

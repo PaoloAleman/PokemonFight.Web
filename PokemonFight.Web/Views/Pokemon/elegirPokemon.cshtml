@@ -1,13 +1,17 @@
 ﻿@using PokemonFight.Data.EF;
 @model List<Pokemon>;
 
-    <div class="grid grid-cols-2 grid-rows-2 gap-6">
+    <div class="grid grid-cols-2 grid-rows-2 gap-6 mb-20">
         @foreach(var pokemon in Model){
-            <button type="button" name="pokemonElegido" value="@pokemon.Nombre" class="border border-black w-[50%] mx-auto">
-                <div class="border-b border-black flex items-center justify-center bg-[#fee581] bg-opacity-80 h-[70%]">
+            <button type="button" name="pokemonElegido" value="@pokemon.Nombre" class="border border-black w-[70%] mx-auto">
+                <div class="border-b border-black flex items-center justify-center bg-[#fee581] bg-opacity-80 h-[240px]">
+                    @if(pokemon.Nombre.Equals("Squirtle")){
+                        <img src="@pokemon.Imagen" class="w-[40%]" />
+                    }else{
                         <img src="@pokemon.Imagen" class="w-[70%]" />
+                    }
                 </div>
-                <div class="bg-[#ffd538] bg-opacity-80 h-[30%] flex items-center justify-center">
+                <div class="bg-[#ffd538] bg-opacity-80 h-[100px] flex items-center justify-center">
                     <p class="text-2xl">@pokemon.Nombre</p>
                 </div>
             </button>
