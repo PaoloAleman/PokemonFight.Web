@@ -31,6 +31,18 @@ namespace PokemonFight.Web.Controllers
 
         }
 
+        [HttpPost]
+        public string definirGanador(string ganador)
+        {
+            HttpContext.Session.SetString("ganador", ganador);
+            return ganador;
+        }
+
+        public IActionResult ganador() {
+            Pokemon ganador = pokemonServicio.obtenerPokemonPorNombre(HttpContext.Session.GetString("ganador"));
+            return View(ganador);
+        }
+
 
 
     }

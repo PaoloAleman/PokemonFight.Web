@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using PokemonFight.Data.EF;
 using PokemonFight.Servicios;
@@ -24,15 +25,26 @@ namespace PokemonFight.Web.Hubs{
 
         public async Task atacarPokemon(string value){
             double? daño = pokemonServicio.obtenerAtaquePorId(int.Parse(value)).Daño;
-            string nombrePokemon = pokemonServicio.obtenerPokemonPorAtaque(int.Parse(value)).Nombre;
+
+            Pokemon pokemon = pokemonServicio.obtenerPokemonPorAtaque(int.Parse(value));
+
+            string pokemonAtacado= definirPokemonAtacado(pokemon.Nombre);
+
+            string pokemonAtacante = pokemon.Nombre;
+            double? vidaPokemon=pokemon.Vida;
+            
+            await Clients.All.SendAsync("atacado", daño,pokemonAtacado,pokemonAtacante,vidaPokemon);
+        }
+
+        private string definirPokemonAtacado(string pokemon){
             var httpContext = Context.GetHttpContext();
-            string pokemonAtacado="";
-            if (nombrePokemon.Equals(httpContext.Session.GetString("nombre"))) {
-                pokemonAtacado = httpContext.Session.GetString("nombre2");
-            }else {
-                pokemonAtacado = httpContext.Session.GetString("nombre");
+            if (pokemon.Equals(httpContext.Session.GetString("nombre"))){
+                pokemon= httpContext.Session.GetString("nombre2");
+            }else{
+                pokemon= httpContext.Session.GetString("nombre");
             }
-            await Clients.All.SendAsync("atacado", daño,pokemonAtacado);
+
+            return pokemon;
         }
 
 
