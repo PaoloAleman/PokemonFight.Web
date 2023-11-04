@@ -20,8 +20,15 @@ namespace PokemonFight.Servicios
             return _context.Pokemons.ToList();
         }
 
-        public Pokemon obtenerPokemonPorNombre(string v)
-        {
+        public Ataque obtenerAtaquePorId(int value){
+            return _context.Ataques.FirstOrDefault(a => a.Id == value);
+        }
+
+        public Pokemon obtenerPokemonPorAtaque(int idAtaque){
+            return _context.Pokemons.FirstOrDefault(p => p.AtaquePokemons.Any(ap => ap.IdAtaque == idAtaque));
+        }
+
+        public Pokemon obtenerPokemonPorNombre(string v){
             return _context.Pokemons.
                 Include(p=>p.AtaquePokemons).ThenInclude(p=>p.IdAtaqueNavigation).
                 FirstOrDefault(p => p.Nombre == v);

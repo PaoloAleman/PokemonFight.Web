@@ -1,5 +1,4 @@
 ﻿const pokemonesElegidos = document.getElementsByName("pokemonElegido");
-var conn = new signalR.HubConnectionBuilder().withUrl("/pokemonHub").build();
 var pokemones = [];
 
 conn.on("pokemonEnviado", function (pokemon) {
@@ -38,10 +37,5 @@ pokemonesElegidos.forEach(p => {
         });
     });
 });
-
-conn.start().then(function () {
-    console.log("conectado");
-});
-
 
 

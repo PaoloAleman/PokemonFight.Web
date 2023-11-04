@@ -2,10 +2,11 @@
 @model List<Pokemon>
 
 <div class="flex items-center justify-around w-[90%] mx-auto">
+    <p class="text-2xl" id="vida"></p>
     @foreach (var pokemon in Model){
         <div class="w-[40%] bg-[#a0d2bb]">
             <div class="mb-10" name="barraVida">
-                <label class="text-xl font-bold">Vida @pokemon.Vida</label>
+                <label class="text-xl font-bold" id="@pokemon.Nombre">100</label>
                 <div class="w-[70%] h-[25px] flex items-center rounded-3xl">
                     <section class="w-[70%] h-[100%] bg-[#fd0c0d] rounded-bl-3xl rounded-tl-3xl"></section>
                     <section class="w-[30%] h-[100%] bg-[#303135] rounded-br-3xl rounded-tr-3xl bg-opacity-80"></section>
@@ -22,9 +23,9 @@
 
             <div class="grid grid-cols-2 grid-rows-2 mt-4 gap-4">
                 @foreach(var ataque in pokemon.AtaquePokemons){
-                    <div class="bg-[#f3be12] border border-black p-6 rounded-xl flex items-center justify-center">
-                        <p class="text-2xl">@ataque.IdAtaqueNavigation.Nombre</p>
-                    </div>
+                    <button value="@ataque.IdAtaqueNavigation.Id" name="ataquePokemon" class="bg-[#f3be12] border border-black p-6 rounded-xl flex items-center justify-center text-2xl">
+                        @ataque.IdAtaqueNavigation.Nombre
+                    </button>
                 }    
             </div>
         </div>
