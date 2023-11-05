@@ -8,5 +8,6 @@ namespace PokemonFight.Servicios
         Ataque obtenerAtaquePorId(int value);
         Pokemon obtenerPokemonPorAtaque(int idAtaque);
         Pokemon obtenerPokemonPorNombre(string v);
+   
     }
 }
