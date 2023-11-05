@@ -33,4 +33,32 @@
             </div>
         </div>
     }
+    
 </div>
+<div class="chat-container">
+    <h2 class="text-center">Chat de Batalla</h2>
+    <ul id="chat" class="chat-messages">
+        <!-- Mensajes del chat se agregan aquí -->
+    </ul>
+</div>
+
+<style>
+    .chat-container {
+        position: fixed; /* Fijar el chat en la ventana del navegador */
+        top: 50%; /* Colocarlo en la mitad vertical de la pantalla */
+        left: 50%; /* Colocarlo en la mitad horizontal de la pantalla */
+        transform: translate(-50%, -50%); /* Centrar el contenido */
+        background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+
+    /* Estilos para los mensajes del chat */
+    .chat-messages {
+        list-style: none;
+        padding: 0;
+        max-height: 300px; /* Altura máxima del chat antes de desplazarse */
+        overflow-y: auto; /* Agregar una barra de desplazamiento vertical si es necesario */
+    }
+</style>
