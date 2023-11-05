@@ -10,9 +10,10 @@ public partial class Pokemon
     public string? Nombre { get; set; }
 
     public string? Tipo { get; set; }
-    public string? Imagen { get; set; }
 
     public double? Vida { get; set; }
+
+    public string? Imagen { get; set; }
 
     public virtual ICollection<AtaquePokemon> AtaquePokemons { get; set; } = new List<AtaquePokemon>();
 }
