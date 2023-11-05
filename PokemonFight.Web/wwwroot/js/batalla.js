@@ -1,4 +1,5 @@
 ﻿const ataquesPokemones = document.getElementsByName("ataquePokemon");
+const chat = document.getElementById("chat");
 
 ataquesPokemones.forEach(ap => {
     ap.addEventListener("click", () => {
@@ -8,10 +9,12 @@ ataquesPokemones.forEach(ap => {
     });
 });
 
-conn.on("atacado", function (daño, pokemonAtacado,pokemonAtacante,vidaPokemon) {
+conn.on("atacado", function (daño, pokemonAtacado,pokemonAtacante,vidaPokemon, mensaje) {
 
     var vida = document.getElementById(pokemonAtacado);
     var barraVida = document.getElementById("barraVida " + pokemonAtacado);
+
+    console.log("ataque recibido", mensaje);
 
     if(parseFloat(vida.textContent) - parseFloat(daño) > 0) {
         vida.textContent = parseFloat(vida.textContent) - parseFloat(daño);
@@ -31,5 +34,9 @@ conn.on("atacado", function (daño, pokemonAtacado,pokemonAtacante,vidaPokemon) 
             window.location.href = "/Pokemon/ganador";
         })   
     }
+    const mensajeElemento = document.createElement("li");
+    mensajeElemento.textContent = `${mensaje.usuario} atacó a ${pokemonAtacado} con ${mensaje.habilidad} y causó ${mensaje.danio} de daño.`;
+    chat.appendChild(mensajeElemento);
 
+    chat.scrollTop = chat.scrollHeight;
 });
