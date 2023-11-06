@@ -29,12 +29,18 @@ conn.on("redireccion", function (pokemonesObtenidos) {
     })
 });
 
-
+var selecciono = false;
 pokemonesElegidos.forEach(p => {
     p.addEventListener("click", () => {
-        conn.invoke("enviarPokemon", p.value).catch(function (err) {
+        
+        if (!selecciono) {
+            selecciono = true;
+            conn.invoke("enviarPokemon", p.value).catch(function (err) {
             return console.error(err.toString());
-        });
+            });
+            
+        }
+        
     });
 });
 
