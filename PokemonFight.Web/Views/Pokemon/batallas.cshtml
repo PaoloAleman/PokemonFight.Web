@@ -35,30 +35,66 @@
     }
     
 </div>
+<div class="chat-toggle-button">Mostrar Chat</div>
 <div class="chat-contenedor">
     <h2 class="text-center">Chat de Batalla</h2>
     <ul id="chat" class="chat-mensajes">
-        <!-- Mensajes del chat se agregan aquí -->
     </ul>
 </div>
 
 <style>
+    .chat-toggle-button {
+        position: fixed;
+        bottom: 10px; 
+        left: 10px; 
+        background: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 999;
+    }
+
     .chat-contenedor {
-        position: fixed; /* Fijar el chat en la ventana del navegador */
-        top: 50%; /* Colocarlo en la mitad vertical de la pantalla */
-        left: 50%; /* Colocarlo en la mitad horizontal de la pantalla */
-        transform: translate(-50%, -50%); /* Centrar el contenido */
-        background: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+        display: none; 
+        position: fixed;
+        bottom: 50px; 
+        left: 10px; 
+        background: rgba(255, 255, 255, .9);
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 10px;
+        z-index: 998; 
     }
 
-    /* Estilos para los mensajes del chat */
+
     .chat-mensajes {
         list-style: none;
         padding: 0;
-        max-height: 300px; /* Altura máxima del chat antes de desplazarse */
-        overflow-y: auto; /* Agregar una barra de desplazamiento vertical si es necesario */
+        max-height: 300px;
+        overflow-y: auto;
     }
 </style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var chatVisible = false;
+
+        
+        function toggleChat() {
+            if (chatVisible) {
+                $('.chat-contenedor').hide();
+                $('.chat-toggle-button').text('Mostrar Chat');
+            } else {
+                $('.chat-contenedor').show();
+                $('.chat-toggle-button').text('Ocultar Chat');
+            }
+            chatVisible = !chatVisible;
+        }
+
+        
+        $('.chat-toggle-button').click(function () {
+            toggleChat();
+        });
+    });
+</script>
