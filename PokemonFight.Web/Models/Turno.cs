@@ -2,16 +2,19 @@
 {
     public class Turno
     {
-        private static int contadorturno = 1;
-        public int contador => contadorturno;
+        public static int contador =0;
         public String mensaje = "todavia no es tu turno";
 
 
         public Turno()
         {
-            contadorturno++;
+            
 
         }
+     
+        public void Contar() { contador++; }
+
+        public int getContador() { return contador; }
     }
 }
 
