@@ -59,17 +59,17 @@ namespace PokemonFight.Web.Hubs
         private string definirPokemonAtacado(string pokemon)
         {
             var httpContext = Context.GetHttpContext();
-            var turno = new Turno();  turno = new Turno();
-            if (pokemon.Equals(httpContext.Session.GetString("nombre"))&&turno.contador%2==0)
+            var turno = new Turno();  
+            if (pokemon.Equals(httpContext.Session.GetString("nombre"))&&turno.getContador()%2==0)
             {
                 pokemon = httpContext.Session.GetString("nombre2");
-                turno = new Turno();
+                turno.Contar();
             }
             else
-            if (pokemon.Equals(httpContext.Session.GetString("nombre2"))&&turno.contador % 2 != 0)
+            if (pokemon.Equals(httpContext.Session.GetString("nombre2"))&&turno.getContador() % 2 != 0)
             {
                 pokemon = httpContext.Session.GetString("nombre");
-                turno = new Turno();
+                turno.Contar();
             }
             else { pokemon = "no es tu turno"; }
 
